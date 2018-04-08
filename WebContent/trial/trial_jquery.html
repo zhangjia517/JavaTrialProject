@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#hide").click(function() {
+			$("p").hide(1000);
+			$("h2").css("background-color", "red");
+		});
+		$("#show").dblclick(function() {
+			$("p").show(1000);
+			$("h2").css("background-color", "white");
+		});
+		$('body').append("WTF");
+		console.log("hhah");
+	});
+</script>
+<script>
+	$
+			.getJSON(
+					"http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+					{
+						tags : "mount rainier",
+						tagmode : "any",
+						format : "json"
+					}, function(data) {
+						$.each(data.items, function(i, item) {
+							$("<img/>").attr("src", item.media.m).appendTo(
+									"#images");
+							if (i == 1)
+								return false;
+						});
+					});
+</script>
+
+<title>Trial jQuery</title>
+</head>
+<body>
+	<h2>h2-单击隐藏p h2变红了！双击显示p h2还原！</h2>
+	<p>p-隐藏哥！</p>
+	<button id="hide" type="button">隐藏丫</button>
+	<button id="show" type="button">显示丫</button>
+
+	<div id="images"></div>
+</body>
+</html>
